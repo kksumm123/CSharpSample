@@ -4,7 +4,7 @@ namespace ExitQuestion
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // 키보드를 눌러주세요
             // 누르신 키보드는 ()입니다

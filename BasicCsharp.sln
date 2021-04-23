@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiplicationTable", "Mult
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiplicationTableRandomQuiz", "MultiplicationTableRandomQuiz\MultiplicationTableRandomQuiz.csproj", "{851D5512-C9EA-495A-939C-06B3F096D77B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExitQuestion", "ExitQuestion\ExitQuestion.csproj", "{3CA69645-BCE2-4963-96F7-7337376EB51B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExitQuestion", "ExitQuestion\ExitQuestion.csproj", "{3CA69645-BCE2-4963-96F7-7337376EB51B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListSample", "ListSample\ListSample.csproj", "{431CE003-C395-4613-A14B-E38DFDC74438}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3CA69645-BCE2-4963-96F7-7337376EB51B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA69645-BCE2-4963-96F7-7337376EB51B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CA69645-BCE2-4963-96F7-7337376EB51B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{431CE003-C395-4613-A14B-E38DFDC74438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431CE003-C395-4613-A14B-E38DFDC74438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431CE003-C395-4613-A14B-E38DFDC74438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431CE003-C395-4613-A14B-E38DFDC74438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

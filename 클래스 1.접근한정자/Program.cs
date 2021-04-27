@@ -19,7 +19,7 @@ namespace 클래스_3.접근한정자
     {
         void PrintMyMoney()
         {
-            Console.WriteLine(아빠만사용하는비상금);
+            //Console.WriteLine(아빠만사용하는비상금);
             Console.WriteLine(은닉재산);
             Console.WriteLine(공개된재산);
         }
@@ -30,8 +30,8 @@ namespace 클래스_3.접근한정자
         {
             Me me = new Me();
 
-            Console.WriteLine(me.아빠만사용하는비상금);
-            Console.WriteLine(me.은닉재산);
+            //Console.WriteLine(me.아빠만사용하는비상금);
+            //Console.WriteLine(me.은닉재산);
             Console.WriteLine(me.공개된재산);
         }
     }

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "클래스 3.접근한정자
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "클래스 2.상속된 멤버 숨기기", "클래스 2.상속된 멤버 숨기기\클래스 2.상속된 멤버 숨기기.csproj", "{71FFBA1C-57F3-4E70-AF41-18A4A9DAD71A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListSample", "ListSample\ListSample.csproj", "{431CE003-C395-4613-A14B-E38DFDC74438}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{71FFBA1C-57F3-4E70-AF41-18A4A9DAD71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71FFBA1C-57F3-4E70-AF41-18A4A9DAD71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71FFBA1C-57F3-4E70-AF41-18A4A9DAD71A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{431CE003-C395-4613-A14B-E38DFDC74438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431CE003-C395-4613-A14B-E38DFDC74438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431CE003-C395-4613-A14B-E38DFDC74438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431CE003-C395-4613-A14B-E38DFDC74438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

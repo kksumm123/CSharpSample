@@ -16,7 +16,6 @@ namespace _0.레벨테스트문제
     {
         private static int correctAnswer = 0;
         private static int qustionCount = 0;
-        private static readonly string answer5 = "a = (int)x;";
 
         //문제 3번에서 사용.
         public enum Weekend
@@ -78,28 +77,25 @@ namespace _0.레벨테스트문제
             // 문제1
             {
                 int answer = (13 % 3) * 3 - 9;
-                Console.WriteLine($"1. answer의 값은?:{answer}");
-
-                CountCorrectAnswer("여기답적기", answer.ToString());
+                CountCorrectAnswer("여기답적기", answer);
             }
 
             // 문제2
             {
                 int x = 1;
                 string answer = $"{x++}, {x}, {++x}, {x}";
-                Console.WriteLine(answer);
                 CountCorrectAnswer(" , , , ", answer);
             }
 
             // 문제3
             {
                 int answer = (int)Weekend.Wednesday;
-                CountCorrectAnswer("여기답적기", answer.ToString());
+                CountCorrectAnswer("여기답적기", answer);
             }
 
             // 문제4. || && 사용
             {
-                CountCorrectAnswer("여기답적기", Question().ToString());
+                CountCorrectAnswer("여기답적기", Question());
 
                 bool Question()
                 {
@@ -114,9 +110,8 @@ namespace _0.레벨테스트문제
             //문제 5. double 타입의 변수 x를 int타입의 변수 a에 캐스팅하시오
             {
                 double x = 12.3;
-                int a;
-                a = (int)x;
-                CountCorrectAnswer("여기답적기", answer5);
+                int a = (int)x;
+                CountCorrectAnswer("여기답적기", a);
             }
 
             // 문제 6 값타입에서의 대입과 참조타입에서의 대입.
@@ -124,23 +119,24 @@ namespace _0.레벨테스트문제
                 ValueType v1, v2;
                 v1.x = 1;
                 v2 = v1;
+                v1.x = 2;
                 CountCorrectAnswer("여기답적기", v2.x);
+                // 값 타입에서의 대입은 값을 복사한다.
 
-                RefType f1 = new RefType(), f2 = new RefType();
-                f1.x = 1;
-                f2 = f1;
-                CountCorrectAnswer("여기답적기", f2.x);
+                RefType r1 = new RefType(), r2 = new RefType();
+                r1.x = 1;
+                r2 = r1;
+                r1.x = 2;
+                CountCorrectAnswer("여기답적기", r2.x);
+                // 참조 타입에서의 대입은 주소를 넘겨준다. -> 값을 바꾸면 같은 주소를 보고 있기에 모두 변한다.
             }
 
-            // 문제 7. 함수 기본값 사용
+            // 문제 7. 함수 기본값 사용, 자식 부모관계에서 형 변환
             {
                 Point a = new Point(10, 20);
                 Point b = new Point3D(10, 20, 30); // 부모 클래스는 자식 클래스를 담을 수 있다.(자식 클래스에 있는 변수는 사용할 수 없다.
                 Point3D c = (Point3D)b;
                 CountCorrectAnswer("여기답적기", c.z);
-            }
-
-            {
             }
 
             // 문자열 포멧 사용.
@@ -156,16 +152,27 @@ namespace _0.레벨테스트문제
             // static 프로그램 실행시바로 초기화 되어 언제든지 사용할 수 있다
             // dynamic은 프로그램 실행중에 코드가 실행되면 초기화되어 사용된다
             {
-                StaticVariableInclude staticVariableInclude = new StaticVariableInclude();
-                staticVariableInclude.normalInt = 1;
-                StaticVariableInclude.staticInt = 2;
+                // static 변수 사용.
+                {
+                    StaticVariableInclude staticVariableInclude = new StaticVariableInclude();
+                    staticVariableInclude.normalInt = 1;
+                    StaticVariableInclude.staticInt = 2;
+                }
+
+                {
+                    StaticVariableInclude staticVariableInclude = new StaticVariableInclude();
+
+                    CountCorrectAnswer("여기답적기", staticVariableInclude.normalInt, "일반 변수 생존 주기");
+                    CountCorrectAnswer("여기답적기", StaticVariableInclude.staticInt, "Static 변수 생존 주기");
+                }
             }
 
+            // static 함수 사용
             {
-                StaticVariableInclude staticVariableInclude = new StaticVariableInclude();
+                StaticMethodInclude staticMethodInclude = new StaticMethodInclude();
+                staticMethodInclude.MyNotStaticMethod();
 
-                CountCorrectAnswer("여기답적기", staticVariableInclude.normalInt, "일반 변수 생존 주기");
-                CountCorrectAnswer("여기답적기", StaticVariableInclude.staticInt, "Static 변수 생존 주기");
+                StaticMethodInclude.MyStaticMethod();
             }
 
             // 확장 함수 사용
@@ -206,6 +213,19 @@ namespace _0.레벨테스트문제
         {
             static public int staticInt;
             public int normalInt;
+        }
+
+        private class StaticMethodInclude
+        {
+            static public void MyStaticMethod()
+            {
+                Console.WriteLine("static 함수 호출");
+            }
+
+            public void MyNotStaticMethod()
+            {
+                Console.WriteLine("일반 함수 호출");
+            }
         }
 
         public class AllType<UndefinedType>

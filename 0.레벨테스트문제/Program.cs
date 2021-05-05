@@ -67,11 +67,26 @@ namespace _0.레벨테스트문제
             {
                 //함수 사용법 2 : 반환하고 싶은게 2개 이상일때?
                 // 방법1:반환하기 위한 임시 클래스(구조체 생성)
-                // 방법2: in, out파라미터 사용
-                int int1 = 1;
-                int int2 = 2;
+                // 방법2: out파라미터 사용
+                int int1 = 2;
+                int int2;
 
-                Method2(in int1, out int2);
+                Method2(in int1, out int2, out int int3);
+                Console.WriteLine($"int1:{int1}, int2:{int2}, int3:{int3}"); //int1:2, int2:3, int3:4
+            }
+
+            //형 변환double 타입의 변수 x를 int타입의 변수 a에 캐스팅하시오
+            {
+                float f1 = 1.3f;
+                int i1 = (int)f1;
+                float f2 = 1.6f;
+                int i2 = (int)f2;
+
+                float f3 = -1.3f;
+                int i3 = (int)f3;
+                float f4 = -1.6f;
+                int i4 = (int)f4;
+                Console.WriteLine($"i1:{i1}, i2:{i2}, i3:{i3}, i4:{i4}"); // 형변한하면 반올림 되는게 아니라 값이 짤림
             }
 
             // 문제1
@@ -107,11 +122,8 @@ namespace _0.레벨테스트문제
                 }
             }
 
-            //문제 5. double 타입의 변수 x를 int타입의 변수 a에 캐스팅하시오
+            // 문제 5
             {
-                double x = 12.3;
-                int a = (int)x;
-                CountCorrectAnswer("여기답적기", a);
             }
 
             // 문제 6 값타입에서의 대입과 참조타입에서의 대입.
@@ -204,9 +216,11 @@ namespace _0.레벨테스트문제
             Console.WriteLine($"parma1:{param1}, parma2:{param2}, parma3:{param3}");
         }
 
-        private static void Method2(in int param1, out int param2)
+        private static void Method2(in int param1, out int param2, out int param3)
         {
-            param2 = 3; // out 파라미터는
+            //param1 = 1; //in 파라미터는 읽기전용이라서 값 할당 불가.
+            param2 = param1 + 1; // out파라미터에 값 할당 안하면 컴파일 에러
+            param3 = param1 * 2;
         }
 
         private class StaticVariableInclude

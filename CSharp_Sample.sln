@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "0.레벨테스트문제", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "콘솔계산기", "콘솔계산기\콘솔계산기.csproj", "{F459955C-6397-43CC-9271-F9CDBE1D7327}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "머드게임", "머드게임\머드게임.csproj", "{54315371-4506-4432-9392-15A69B90B59C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +183,18 @@ Global
 		{F459955C-6397-43CC-9271-F9CDBE1D7327}.Release|x64.Build.0 = Release|Any CPU
 		{F459955C-6397-43CC-9271-F9CDBE1D7327}.Release|x86.ActiveCfg = Release|Any CPU
 		{F459955C-6397-43CC-9271-F9CDBE1D7327}.Release|x86.Build.0 = Release|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Debug|x64.Build.0 = Debug|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Debug|x86.Build.0 = Debug|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Release|x64.ActiveCfg = Release|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Release|x64.Build.0 = Release|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Release|x86.ActiveCfg = Release|Any CPU
+		{54315371-4506-4432-9392-15A69B90B59C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

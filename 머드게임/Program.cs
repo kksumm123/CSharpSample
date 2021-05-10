@@ -54,6 +54,8 @@ namespace 머드게임
 
                     // 몬스터를 만났습니다.
                     Print($"몬스터 {monsterCount}마리를 만났습니다. 전투 시작!");
+                    // $ : "몬스터 {2}마리를 만났습니다. 전투 시작!")
+                    //  : "몬스터 {monsterCount}마리를 만났습니다. 전투 시작!")
 
                     // 몬스터 정보 출력.
                     foreach (var m in monsters)
@@ -67,19 +69,19 @@ namespace 머드게임
                     Print("");
                     //유저 행동.
                     Print("1:공격, 2:회복, 3:도망");  //\n 이스케이프 문자.
-                    int userInput = int.Parse(Console.ReadKey().KeyChar.ToString()); // '1' ->  "1"
+                    char userInput = Console.ReadKey().KeyChar; // '1' ->  "1"
 
                     //string userName = Console.ReadLine();// <- 기존에 유저 입력 받던 방식.
 
                     switch (userInput)
                     {
-                        case 1:// 공격
+                        case '1':// 공격
                             PlayerAttack(player, monsters);
                             break;
-                        case 2: // 회복
+                        case '2': // 회복
                             player.RestoreHp();
                             break;
-                        case 3: // 도망.
+                        case '3': // 도망.
                             bool successRun = TryRun();
                             break;
                         default:

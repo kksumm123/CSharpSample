@@ -18,7 +18,7 @@ namespace 클래스_2.상속된_멤버_숨기기
         // 부모에게 있는 변수와 변수 이름이 같은 경우 실수가 아니라
         // 의도적인 코드란것을 컴파일러와 동료에게 알려주기 위해 new를 사용한다.
         // new를 안해도 에러는 발생하지 않는다. 
-        new public int money; 
+        new public int money;
         public Me()
         {
             money = 10;

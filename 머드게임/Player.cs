@@ -7,13 +7,13 @@ namespace 머드게임
         public string userName;
         public int power;
         public int hp;
-        int maxHp;
+        int maxHp = 10;
 
-        public Player(string userName, int power, int hp)
+        public Player(string _userName, int power, int mapHp)
         {
-            this.userName = userName;
+            userName = _userName;
             this.power = power;
-            this.maxHp = hp;
+            maxHp = mapHp;
             this.hp = maxHp;
         }
 

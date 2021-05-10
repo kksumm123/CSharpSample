@@ -56,6 +56,13 @@ namespace 머드게임
                     Print($"몬스터 {monsterCount}마리를 만났습니다. 전투 시작!");
                     // $ : "몬스터 {2}마리를 만났습니다. 전투 시작!")
                     //  : "몬스터 {monsterCount}마리를 만났습니다. 전투 시작!")
+                    string s1 = @"1
+줄바꿈
+                    빈공간";
+
+                    string s2 = "1\n줄바꿈\n" +
+"                   빈공간";
+
 
                     // 몬스터 정보 출력.
                     foreach (var m in monsters)

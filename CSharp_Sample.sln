@@ -25,9 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "클래스와 인터페이�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "0.레벨테스트문제", "0.레벨테스트문제\0.레벨테스트문제.csproj", "{8AEAE098-3B9C-4224-9E48-EEF5FF6AD2A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "콘솔계산기", "콘솔계산기\콘솔계산기.csproj", "{F459955C-6397-43CC-9271-F9CDBE1D7327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "콘솔계산기", "콘솔계산기\콘솔계산기.csproj", "{F459955C-6397-43CC-9271-F9CDBE1D7327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "머드게임", "머드게임\머드게임.csproj", "{54315371-4506-4432-9392-15A69B90B59C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "머드게임", "머드게임\머드게임.csproj", "{54315371-4506-4432-9392-15A69B90B59C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "클래스 4.static 변수 함수", "클래스 4.static\클래스 4.static 변수 함수.csproj", "{2AF0131A-BE44-4A71-95F2-493781D9DCFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "클래스 4.static변수와 static함수", "클래스 4.static변수와 static함수\클래스 4.static변수와 static함수.csproj", "{D2DCFA4D-3A48-4D7C-AC69-15396623B587}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +199,30 @@ Global
 		{54315371-4506-4432-9392-15A69B90B59C}.Release|x64.Build.0 = Release|Any CPU
 		{54315371-4506-4432-9392-15A69B90B59C}.Release|x86.ActiveCfg = Release|Any CPU
 		{54315371-4506-4432-9392-15A69B90B59C}.Release|x86.Build.0 = Release|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Debug|x64.Build.0 = Debug|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Debug|x86.Build.0 = Debug|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Release|x64.ActiveCfg = Release|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Release|x64.Build.0 = Release|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Release|x86.ActiveCfg = Release|Any CPU
+		{2AF0131A-BE44-4A71-95F2-493781D9DCFB}.Release|x86.Build.0 = Release|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Debug|x64.Build.0 = Debug|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Debug|x86.Build.0 = Debug|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Release|x64.ActiveCfg = Release|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Release|x64.Build.0 = Release|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Release|x86.ActiveCfg = Release|Any CPU
+		{D2DCFA4D-3A48-4D7C-AC69-15396623B587}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

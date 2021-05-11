@@ -29,8 +29,6 @@ namespace 머드게임
 
         private static Player MakePlayer()
         {
-
-            //quit = true; // <- 나가야 되는 상황에서 변경
             Print("당신의 이름을 입력해주세요");
             string userName = Console.ReadLine();
 
@@ -109,14 +107,22 @@ GameOver
 처음부터 하시겠습니까?(R)etry/(Q)uit");
 
             string retryOrQuit;
-            List<string> allowedAnswer = new List<string> { "R", "Q"}; // (R)etry/(Q)uit
-            do
-            {
-                retryOrQuit = Console.ReadKey().KeyChar.ToString().ToUpper();
-            } while (allowedAnswer.Contains(retryOrQuit) == false);
+            // (R)etry/(Q)uit
+            retryOrQuit = GetAllowedAnswer("R", "Q");
 
             bool isQuit = retryOrQuit == "Q";
             return isQuit;
+        }
+
+        private static string GetAllowedAnswer(params string[] alllowsAnserStringArray)
+        {
+            string retryOrQuit;
+            List<string> allowedAnswer = new List<string>(alllowsAnserStringArray);
+            do
+            {
+                retryOrQuit = Console.ReadLine().ToUpper();
+            } while (allowedAnswer.Contains(retryOrQuit) == false);
+            return retryOrQuit;
         }
 
         private static void MonsterTurn(Player player, List<Monster> monsters)
@@ -133,15 +139,7 @@ GameOver
         {
             Print("");
             Print("1:공격, 2:회복, 3:도망");
-            char userInput;
-
-
-            List<char> allowedAnswer = new List<char> { '1', '2', '3' };
-            do
-            {
-                userInput = Console.ReadKey().KeyChar; // '1' ->  "1"
-            } while (allowedAnswer.Contains(userInput) == false);
-
+            char userInput = GetAllowedAnswer("1", "2", "3")[0];
             switch (userInput)
             {
                 case '1':// 공격
@@ -191,12 +189,8 @@ GameOver
 
             int selected;
 
-            string userInput;
-            do
-            {
-                userInput = Console.ReadKey().KeyChar.ToString();
-            } while (allowedAnswer.Contains(userInput) == false);
-
+            string userInput = GetAllowedAnswer(allowedAnswer.ToArray());
+            
             selected = int.Parse(userInput) - 1; // 인덱스는 0부터 시작하므로 -1해주자
             
             var selectedMonster = monsters[selected];

@@ -152,7 +152,10 @@ GameOver
         private static void MonsterAttackToPlayer(Player player, List<Monster> monsters)
         {
             Print("모든 몬스터가 플레이어 공격");
-
+            foreach (var m in monsters)
+            {
+                player.hp -= m.power;
+            }
         }
 
         private static void PlayerAttack(Player player, List<Monster> monsters)

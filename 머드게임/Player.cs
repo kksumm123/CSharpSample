@@ -12,6 +12,7 @@ namespace 머드게임
         string userName;
         public int power;
         public int hp;
+        public int score;
         int maxHp = 10;
 
         public Player(string _userName, int power, int mapHp)

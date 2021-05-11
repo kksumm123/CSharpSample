@@ -51,67 +51,86 @@ namespace 머드게임
 
         private static bool ProcessBattle(Player player)
         {
-            // 몬스터 스폰, 리젠
-            int monsterCount = random.Next(1, 3); // 1 ~ 2개(최소값은 포함해도 최대값은 포함하지 않음) 
-            List<Monster> monsters = new List<Monster>();
-            for (int i = 0; i < monsterCount; i++)
+            int dungeonLevel = 1;
+
+            do
             {
-                monsters.Add(new Monster());
-            }
+                // 몬스터 스폰, 리젠
+                int monsterCount = random.Next(1, 3); // 1 ~ 2개(최소값은 포함해도 최대값은 포함하지 않음) 
+                List<Monster> monsters = new List<Monster>();
+                for (int i = 0; i < monsterCount; i++)
+                {
+                    monsters.Add(new Monster());
+                }
 
-            monsters.Add(new DoubleBladeSlime());
+                monsters.Add(new DoubleBladeSlime());
 
-            Print($"몬스터 {monsters.Count}마리를 만났습니다.");
+                Print($"몬스터 {monsters.Count}마리를 만났습니다.");
 
-            // 문자열앞에 $를 사용하는 예제
-            // $를 문자열앞에 붙였을때        : "몬스터 {2}마리를 만났습니다.")
-            // $를 문자열앞에 붙이지 않았을때 : "몬스터 {monsterCount}마리를 만났습니다.")
+                // 문자열앞에 $를 사용하는 예제
+                // $를 문자열앞에 붙였을때        : "몬스터 {2}마리를 만났습니다.")
+                // $를 문자열앞에 붙이지 않았을때 : "몬스터 {monsterCount}마리를 만났습니다.")
 
-            // 문자열앞에 @를 붙였을때의 예제
-            // @를 붙이면 줄바꿈과 빈공간 표시를 직관적으로 할수 있다.
-            string s1 = @"1
+                // 문자열앞에 @를 붙였을때의 예제
+                // @를 붙이면 줄바꿈과 빈공간 표시를 직관적으로 할수 있다.
+                string s1 = @"1
 줄바꿈
                     빈공간";
 
-            //문자여에서 글자 앞에 '\'이 있으면 이스케이프 문자를 의미합니다
-            // 이스케이프 문자는 뒤에 오는 글자에 따라 다양한 기능이 있습니다.
-            // 예를 들어 \n은 줄바꿈 표시 입니다.
-            // https://docs.microsoft.com/ko-kr/dotnet/standard/base-types/character-escapes-in-regular-expressions
-            string s2 = "1\n줄바꿈\n" +
-"                   빈공간";
+                //문자여에서 글자 앞에 '\'이 있으면 이스케이프 문자를 의미합니다
+                // 이스케이프 문자는 뒤에 오는 글자에 따라 다양한 기능이 있습니다.
+                // 예를 들어 \n은 줄바꿈 표시 입니다.
+                // https://docs.microsoft.com/ko-kr/dotnet/standard/base-types/character-escapes-in-regular-expressions
+                string s2 = "1\n줄바꿈\n" +
+    "                   빈공간";
 
-            // $와 @는 동시에 사용가능하며 순서는 상관없다.
+                // $와 @는 동시에 사용가능하며 순서는 상관없다.
 
-            while (player.hp > 0)
-            {
-                Print("");
-                Print("몬스터 정보 출력");
-                // 몬스터 정보 출력.
-                foreach (var m in monsters)
+                while (monsters.Count > 0)
                 {
-                    Print($"{m.name} 공격력:{m.power}, 체력:{m.hp}");
-                }
+                    Print("");
+                    Print("몬스터 정보 출력");
+                    // 몬스터 정보 출력.
+                    foreach (var m in monsters)
+                    {
+                        Print($"{m.name} 공격력:{m.power}, 체력:{m.hp}");
+                    }
 
-                // 유저 정보 출력.
-                Print($"{player.DisplayName} 공격력:{player.power}, 체력:{player.hp}");
+                    // 유저 정보 출력.
+                    Print($"{player.DisplayName} 공격력:{player.power}, 체력:{player.hp}");
 
-                //유저 행동.
-                PlayerTurn(player, monsters);
+                    //유저 행동.
+                    PlayerTurn(player, monsters);
 
-                // 몬스터가 플레이어를 공격.
-                MonsterTurn(player, monsters);
-            }
+                    // 몬스터가 플레이어를 공격.
+                    MonsterTurn(player, monsters);
 
-            Print($@"{player.DisplayName}는 사망했습니다.
+
+                    // 플레이어 죽었다면 게임 끝내자.
+                    if (player.hp <= 0)
+                    {
+                        Print($@"{player.DisplayName}는 사망했습니다.
 GameOver
 처음부터 하시겠습니까?(R)etry/(Q)uit");
 
-            string retryOrQuit;
-            // (R)etry/(Q)uit
-            retryOrQuit = GetAllowedAnswer("R", "Q");
+                        // (R)etry/(Q)uit
+                        bool isQuit = GetAllowedAnswer("R", "Q") == "Q";
+                        return isQuit;
+                    }
+                }
 
-            bool isQuit = retryOrQuit == "Q";
-            return isQuit;
+                Print($@"던전 탐험을 종료하시겠습니까?(Y)es/(N)o");
+                if (GetAllowedAnswer("Y", "N") == "Y")
+                {
+                    Print($@"용사가 이겼습니다. 점수 : {player.score}");
+                    return true;
+                }
+            
+
+                // 모든 몬스터를 죽였으므로 던전 레벨 증가
+                dungeonLevel++;
+
+            } while (true);// 무한 반복. 나가는 조건은 나갈 것인가 묻는 조건에 q라고 입력해야함.
         }
 
         private static string GetAllowedAnswer(params string[] alllowsAnserStringArray)
@@ -202,9 +221,10 @@ GameOver
             if (selectedMonster.hp <= 0)
             {
                 Print($"{selectedMonster.name}이 죽었다");
+                monsters.Remove(selectedMonster);
 
                 // todo:몬스터 죽일시 아이템 경험치 획득, [랜덤]아이템 획득
-                monsters.Remove(selectedMonster);
+                player.score += 1; // player.score++ 과 동일
             }
         }
 

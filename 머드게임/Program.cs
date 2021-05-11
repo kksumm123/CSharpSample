@@ -95,7 +95,7 @@ namespace 머드게임
                 }
 
                 // 유저 정보 출력.
-                Print($"{player.userName} 공격력:{player.power}, 체력:{player.hp}");
+                Print($"{player.DisplayName} 공격력:{player.power}, 체력:{player.hp}");
 
                 //유저 행동.
                 PlayerTurn(player, monsters);
@@ -104,7 +104,7 @@ namespace 머드게임
                 MonsterTurn(player, monsters);
             }
 
-            Print($@"{player.userName}는 사망했습니다.
+            Print($@"{player.DisplayName}는 사망했습니다.
 GameOver
 처음부터 하시겠습니까?(R)etry/(Q)uit");
 

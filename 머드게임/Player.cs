@@ -4,7 +4,12 @@ namespace 머드게임
 {
     public class Player
     {
-        public string userName;
+        public string DisplayName
+        {
+            get { return $"용사({userName})"; }
+        }
+
+        string userName;
         public int power;
         public int hp;
         int maxHp = 10;

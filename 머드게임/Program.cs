@@ -10,7 +10,7 @@ namespace 머드게임
         // 왜 new를 할까? static 변수와 static클래스 만으로 구현할 수 없는 건가?
         static void Main(string[] args)
         {
-            Print("바람의 킹덤 Ver0.1");
+            Print("바람의 킹덤 Ver0.16");
 
             bool quit = false;
             do

@@ -108,7 +108,13 @@ namespace 머드게임
 GameOver
 처음부터 하시겠습니까?(R)etry/(Q)uit");
 
-            string retryOrQuit = Console.ReadKey().KeyChar.ToString().ToUpper();
+            string retryOrQuit;
+            List<string> allowedAnswer = new List<string> { "R", "Q"}; // (R)etry/(Q)uit
+            do
+            {
+                retryOrQuit = Console.ReadKey().KeyChar.ToString().ToUpper();
+            } while (allowedAnswer.Contains(retryOrQuit) == false);
+
             bool isQuit = retryOrQuit == "Q";
             return isQuit;
         }
@@ -127,9 +133,14 @@ GameOver
         {
             Print("");
             Print("1:공격, 2:회복, 3:도망");
-            char userInput = Console.ReadKey().KeyChar; // '1' ->  "1"
+            char userInput;
 
-            //string userName = Console.ReadLine();// <- 기존에 유저 입력 받던 방식.
+
+            List<char> allowedAnswer = new List<char> { '1', '2', '3' };
+            do
+            {
+                userInput = Console.ReadKey().KeyChar; // '1' ->  "1"
+            } while (allowedAnswer.Contains(userInput) == false);
 
             switch (userInput)
             {
@@ -164,15 +175,29 @@ GameOver
 
         private static void PlayerAttack(Player player, List<Monster> monsters)
         {
+            Print("");
             Print("공격할 몬스터를 선택하세요");
 
+            List<string> allowedAnswer = new List<string>();
             for (int i = 0; i < monsters.Count; i++)
             {
                 var m = monsters[i];
-                Print($"{i + 1} : {m.name} 공격력:{m.power}, 체력:{m.hp}");
+                int monsterNumber = i + 1;
+                Print($"{monsterNumber} : {m.name} 공격력:{m.power}, 체력:{m.hp}");
+
+                allowedAnswer.Add(monsterNumber.ToString());
             }
 
-            int selected = -1 + int.Parse(Console.ReadKey().KeyChar.ToString()); // 인덱스는 0부터 시작하므로  -1
+
+            int selected;
+
+            string userInput;
+            do
+            {
+                userInput = Console.ReadKey().KeyChar.ToString();
+            } while (allowedAnswer.Contains(userInput) == false);
+
+            selected = int.Parse(userInput) - 1; // 인덱스는 0부터 시작하므로 -1해주자
             
             var selectedMonster = monsters[selected];
             selectedMonster.hp -= player.power;

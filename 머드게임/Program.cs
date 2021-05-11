@@ -40,30 +40,32 @@ namespace 머드게임
                 // 키 입력 받기
                 Console.ReadKey();
 
-                while (player.hp > 0)
+                #region 던전 들어가기 시작
+
+                // 몬스터 스폰, 리젠
+                int monsterCount = random.Next(1, 3); // 1 ~ 2개(최소값은 포함해도 최대값은 포함하지 않음) 
+                List<Monster> monsters = new List<Monster>();
+                for (int i = 0; i < monsterCount; i++)
                 {
-                    // 웨이브 시작.
+                    monsters.Add(new Monster());
+                }
 
-                    // 몬스터 스폰, 리젠
-                    int monsterCount = random.Next(1, 3); // 1 ~ 2개(최소값은 포함해도 최대값은 포함하지 않음) 
-                    List<Monster> monsters = new List<Monster>();
-                    for (int i = 0; i < monsterCount; i++)
-                    {
-                        monsters.Add(new Monster());
-                    }
+                Print($"몬스터 {monsterCount}마리를 만났습니다.");
 
-                    // 몬스터를 만났습니다.
-                    Print($"몬스터 {monsterCount}마리를 만났습니다. 전투 시작!");
-                    // $ : "몬스터 {2}마리를 만났습니다. 전투 시작!")
-                    //  : "몬스터 {monsterCount}마리를 만났습니다. 전투 시작!")
-                    string s1 = @"1
+                // 문자열앞에 $와@를 사용하는 예제
+                // $ : "몬스터 {2}마리를 만났습니다. 전투 시작!")
+                //  : "몬스터 {monsterCount}마리를 만났습니다. 전투 시작!")
+                string s1 = @"1
 줄바꿈
                     빈공간";
 
-                    string s2 = "1\n줄바꿈\n" +
+                string s2 = "1\n줄바꿈\n" +
 "                   빈공간";
 
-
+                while (player.hp > 0)
+                {
+                    Print("");
+                    Print("몬스터 정보 출력");
                     // 몬스터 정보 출력.
                     foreach (var m in monsters)
                     {
@@ -102,6 +104,8 @@ namespace 머드게임
 
                 Print(@$"{userName}은 사망했습니다.
 GameOver");
+
+                #endregion 던전 전투 끝
             } while (quit == false);
         }
 

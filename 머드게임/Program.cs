@@ -61,6 +61,8 @@ namespace 머드게임
                 monsters.Add(new Monster());
             }
 
+            monsters.Add(new DoubleBladeSlime());
+
             Print($"몬스터 {monsterCount}마리를 만났습니다.");
 
             // 문자열앞에 $를 사용하는 예제
@@ -102,7 +104,7 @@ namespace 머드게임
                 MonsterTurn(player, monsters);
             }
 
-            Print(@$"{player.userName}은 사망했습니다.
+            Print($@"{player.userName}는 사망했습니다.
 GameOver
 처음부터 하시겠습니까?(R)etry/(Q)uit");
 
@@ -113,6 +115,8 @@ GameOver
 
         private static void MonsterTurn(Player player, List<Monster> monsters)
         {
+            Print("");
+
             // todo: 몬스터 HP회복 진행.
 
             // 몬스터가 플레이어 때리는 과정 진행
@@ -154,7 +158,7 @@ GameOver
             Print("모든 몬스터가 플레이어 공격");
             foreach (var m in monsters)
             {
-                player.hp -= m.power;
+                m.OnAttack(player);
             }
         }
 
@@ -178,7 +182,7 @@ GameOver
             // 몬스터가 죽었는가?
             if (selectedMonster.hp <= 0)
             {
-                Print($"{selectedMonster.name}가 죽었다");
+                Print($"{selectedMonster.name}이 죽었다");
 
                 // todo:몬스터 죽일시 아이템 경험치 획득, [랜덤]아이템 획득
                 monsters.Remove(selectedMonster);

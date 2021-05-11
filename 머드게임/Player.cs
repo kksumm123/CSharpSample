@@ -2,7 +2,7 @@
 
 namespace 머드게임
 {
-    internal class Player
+    public class Player
     {
         public string userName;
         public int power;

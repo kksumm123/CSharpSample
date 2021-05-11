@@ -60,10 +60,10 @@ namespace 머드게임
                 List<Monster> monsters = new List<Monster>();
                 for (int i = 0; i < monsterCount; i++)
                 {
-                    monsters.Add(new Monster());
+                    monsters.Add(new Monster(dungeonLevel));
                 }
 
-                monsters.Add(new DoubleBladeSlime());
+                monsters.Add(new DoubleBladeSlime(dungeonLevel));
 
                 Print($"몬스터 {monsters.Count}마리를 만났습니다.");
 

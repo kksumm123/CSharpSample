@@ -63,7 +63,7 @@ namespace 머드게임
 
             monsters.Add(new DoubleBladeSlime());
 
-            Print($"몬스터 {monsterCount}마리를 만났습니다.");
+            Print($"몬스터 {monsters.Count}마리를 만났습니다.");
 
             // 문자열앞에 $를 사용하는 예제
             // $를 문자열앞에 붙였을때        : "몬스터 {2}마리를 만났습니다.")

@@ -38,6 +38,7 @@ namespace 클래스_3.접근한정자
         internal void 다른사람재산보기(Son otherSon)
         {
             Console.WriteLine(otherSon.은닉재산);
+            Console.WriteLine(otherSon.공개된재산);
         }
 
         internal void 다른사람재산보기(Father otherFather)
@@ -55,6 +56,7 @@ namespace 클래스_3.접근한정자
 
             mySon.은닉재산입금(100);
             yourSon.다른사람재산보기(mySon);
+            yourSon.다른사람재산보기((Father)mySon);
 
             //Console.WriteLine(me.아빠만사용하는비상금); // error
             //Console.WriteLine(me.은닉재산); // error

@@ -26,6 +26,23 @@ namespace 머드게임
             targetPlayer.hp -= power;
             Console.WriteLine($"{name}의 공격으로 {targetPlayer.DisplayName}의 체력은 {targetPlayer.hp}가 되었다");
         }
+
+        public override string ToString()
+        {
+            return $"{name} 공격력:{power}, 체력:{hp}";
+        }
+
+        internal void OnHit(int damage)
+        {
+            hp -= damage;
+
+            Print($"{name}의 체력이 {hp}가 되었다");
+        }
+
+        private void Print(string log)
+        {
+            Console.WriteLine(log);
+        }
     }
 
 

@@ -46,6 +46,8 @@ namespace 머드게임
             };
 
             Player player = new Player(userName, power, hp);
+
+            Print(player + " : logTest");
             return player;
         }
 
@@ -93,11 +95,12 @@ namespace 머드게임
                     // 몬스터 정보 출력.
                     foreach (var m in monsters)
                     {
-                        Print($"{m.name} 공격력:{m.power}, 체력:{m.hp}");
+                        Print(m);// ToString을 오버라이드 하여 간단히 표현하자.
+                        //Print($"{m.name} 공격력:{m.power}, 체력:{m.hp}");
                     }
 
                     // 유저 정보 출력.
-                    Print($"{player.DisplayName} 공격력:{player.power}, 체력:{player.hp}");
+                    Print(player);
 
                     //유저 행동.
                     PlayerTurn(player, monsters);
@@ -154,6 +157,11 @@ GameOver
             MonsterAttackToPlayer(player, monsters);
         }
 
+        enum AttackType
+        {
+            Normal,
+            광역공격,
+        }
         private static void PlayerTurn(Player player, List<Monster> monsters)
         {
             Print("");
@@ -164,10 +172,13 @@ GameOver
                 case '1':// 공격
                     PlayerAttack(player, monsters);
                     break;
-                case '2': // 회복
+                case '2': // 광역 공격
+                    PlayerAttack(player, monsters, AttackType.광역공격);
+                    break;
+                case '3': // 회복
                     player.RestoreHp();
                     break;
-                case '3': // 도망.
+                case '4': // 도망.
                     bool successRun = TryRun();
                     break;
                 default:
@@ -176,7 +187,7 @@ GameOver
             }
         }
 
-        private static void Print(string log)
+        private static void Print(Object log)
         {
             Console.WriteLine(log);
         }
@@ -190,38 +201,66 @@ GameOver
             }
         }
 
-        private static void PlayerAttack(Player player, List<Monster> monsters)
+        private static void PlayerAttack(Player player, List<Monster> monsters, AttackType attackType = AttackType.Normal)
         {
-            Print("");
-            Print("공격할 몬스터를 선택하세요");
-
-            List<string> allowedAnswer = new List<string>();
-            for (int i = 0; i < monsters.Count; i++)
+            // 공
+            switch (attackType)
             {
-                var m = monsters[i];
-                int monsterNumber = i + 1;
-                Print($"{monsterNumber} : {m.name} 공격력:{m.power}, 체력:{m.hp}");
-
-                allowedAnswer.Add(monsterNumber.ToString());
+                case AttackType.Normal:
+                    NormalAttack(player, monsters);
+                    break;
+                case AttackType.광역공격:
+                    광역공격(player, monsters);
+                    break;
             }
 
-
-            int selected;
-
-            string userInput = GetAllowedAnswer(allowedAnswer.ToArray());
-            
-            selected = int.Parse(userInput) - 1; // 인덱스는 0부터 시작하므로 -1해주자
-            
-            var selectedMonster = monsters[selected];
-            selectedMonster.hp -= player.power;
-
-            Print($"{selectedMonster.name}의 체력이 {selectedMonster.hp}가 되었다");
-
-            // 몬스터가 죽었는가?
-            if (selectedMonster.hp <= 0)
+            static void NormalAttack(Player player, List<Monster> monsters)
             {
-                Print($"{selectedMonster.name}이 죽었다");
-                monsters.Remove(selectedMonster);
+                Print("");
+                Print("공격할 몬스터를 선택하세요");
+
+                List<string> allowedAnswer = new List<string>();
+                for (int i = 0; i < monsters.Count; i++)
+                {
+                    var m = monsters[i];
+                    int monsterNumber = i + 1;
+                    Print($"{monsterNumber} : {m.name} 공격력:{m.power}, 체력:{m.hp}");
+
+                    allowedAnswer.Add(monsterNumber.ToString());
+                }
+
+
+                int selected;
+
+                string userInput = GetAllowedAnswer(allowedAnswer.ToArray());
+
+                selected = int.Parse(userInput) - 1; // 인덱스는 0부터 시작하므로 -1해주자
+
+                var selectedMonster = monsters[selected];
+                selectedMonster.OnHit(player.power);
+
+                // 몬스터가 죽었는가?
+                OnMonsterDie(player, monsters, selectedMonster);
+            }
+
+            static void 광역공격(Player player, List<Monster> monsters)
+            {
+                // 모든 몬스터를 때린다.
+                foreach (var monster in monsters)
+                {
+                    monster.OnHit(player.power);
+
+                    OnMonsterDie(player, monsters, monster);
+                }
+            }
+        }
+
+        private static void OnMonsterDie(Player player, List<Monster> monsters, Monster monster)
+        {
+            if (monster.hp <= 0)
+            {
+                Print($"{monster.name}이 죽었다");
+                monsters.Remove(monster);
 
                 // todo:몬스터 죽일시 아이템 경험치 획득, [랜덤]아이템 획득
                 player.score += 1; // player.score++ 과 동일
@@ -235,13 +274,13 @@ GameOver
             return successRun;
         }
 
-        // Monster와  Player의 ToString을 오버라이드 하여 정보 출력하는 부분을 개선합시다.
+        // [완료] Monster와  Player의 ToString을 오버라이드 하여 정보 출력하는 부분을 개선합시다.
 
-        // 광격 공격을 추가 해봅시다.
+        // [완료] 광격 공격을 추가 해봅시다. - 플레이어가 광역공격. -. 스킬
 
-        // AI동료를 추가해 봅시다.
+        // Todo:AI동료를 추가해 봅시다.
 
-        // 일정 확률로 반격하는 적을 추가해봅시다.
+        // Todo:일정 확률로 반격하는 적을 추가해봅시다.
 
         // 메인 함수를 이해 하기 쉽도록 단계별로 함수로 묶어 봅시다.
     }

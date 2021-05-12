@@ -30,5 +30,12 @@ namespace 머드게임
 
             //hp = Math.Min(hp + 1, maxHp);
         }
+
+        public override string ToString()
+        {
+            return $"{DisplayName} 공격력:{power}, 체력:{hp}";
+        }
+
+
     }
 }

@@ -20,6 +20,12 @@ namespace 클래스_3.접근한정자
             Console.WriteLine(은닉재산);
             Console.WriteLine(공개된재산);
         }
+
+        internal void 부모의다른사람재산보기(Father otherFather)
+        {
+            Console.WriteLine(otherFather.아빠만사용하는비상금); // private
+            Console.WriteLine(otherFather.은닉재산);            // protected
+        }
     }
     public class Son : Father
     {
@@ -42,9 +48,12 @@ namespace 클래스_3.접근한정자
         }
 
         internal void 다른사람재산보기(Father otherFather)
-        {
+        {           
             //Console.WriteLine(otherFather.은닉재산); // error
-            Console.WriteLine(otherFather.공개된재산);
+
+            // 자식으로 형 변환 한다음에만 볼 수 있음.
+            Son os = (Son)otherFather;
+            Console.WriteLine(os.은닉재산);
         }
     }
     class Program

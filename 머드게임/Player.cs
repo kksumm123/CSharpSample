@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace 머드게임
 {
@@ -56,6 +57,13 @@ namespace 머드게임
         private void Print(string log)
         {
             Console.WriteLine(log);
+        }
+
+        // todo: 획득된 아이템 능력치 반영하기
+        List<Item> equipedItems = new List<Item>();
+        internal void AddItem(Item item)
+        {
+            equipedItems.Add(item);
         }
     }
 }

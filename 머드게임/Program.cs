@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace 머드게임
 {
+    public enum TypeOfStats
+    {
+        Power,
+        hp,
+    }
     class Program
     {
         static Random random = new Random();
@@ -291,20 +296,40 @@ GameOver
                 Print($"{monster.name}이 죽었다");
                 monsters.Remove(monster);
 
-                //////// todo : 몬스터 죽일시 경험치 획득 
-                // 1. 몬스터에 획득 경험치 속성 추가.
-                // 2. 플레이어에 exp항목 추가.
-                // 3. exp 특정 한계 넘으면 레벨증가.
-                // 4. Level 추가.
-
-                // todo : [랜덤]아이템 획득
+                // [완료]몬스터 죽일시 경험치 획득 
                 player.score += 1; // player.score++ 과 동일
                 player.GetExp(monster.getExp);
+
+                Random random = new Random();
+                double ratio = random.NextDouble();
+                if (ratio < 0.5)
+                {
+                    // todo : [랜덤]아이템 획득
+                    GetItem(player);
+                }
 
                 return monster;
             }
 
             return null;
+        }
+
+
+        static List<Item> dropItems = new List<Item>
+        {
+            new Item(TypeOfStats.Power, 1)
+            ,new Item(TypeOfStats.Power, 2)
+            , new Item(TypeOfStats.hp, 3)
+            , new Item(TypeOfStats.Power, 4)
+        };
+
+        private static void GetItem(Player player)
+        {
+            // Item 클래스 필요(이름, 능력치(hp, power))
+            // Player한테는 여러개의 아이템을 장착 가능하도록
+            Random random = new Random();
+            var selectedRandomItem = dropItems[random.Next(dropItems.Count)];
+            player.AddItem(selectedRandomItem);
         }
 
         private static bool TryRun()

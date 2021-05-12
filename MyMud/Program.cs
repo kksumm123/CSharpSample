@@ -25,7 +25,10 @@ namespace MyMud
 
             // 몬스터 한마리 만들어서 때리자.
             Monster monster = new Monster();
-            monster.hp -= player.power;
+            monster .hp -= player .power;
+
+            Console.WriteLine($"hp:{monster.hp}{1,2},");
+
         }
 
         private static string SetRandomPlayerName()

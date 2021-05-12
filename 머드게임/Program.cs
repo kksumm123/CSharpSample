@@ -151,10 +151,25 @@ GameOver
         {
             Print("");
 
-            // todo: 몬스터 HP회복 진행.
+            // 몬스터 HP회복 진행.
+            MonsterRestoreHp(monsters);
 
             // 몬스터가 플레이어 때리는 과정 진행
             MonsterAttackToPlayer(player, monsters);
+        }
+
+        /// <summary>
+        /// 몬스터의 HP회복.
+        /// </summary>
+        /// <param name="monsters"></param>
+        private static void MonsterRestoreHp(List<Monster> monsters)
+        {
+            foreach (var item in monsters)
+            {
+                string log = item.ToString();
+                item.hp += 1;
+                Console.WriteLine($"{log} 현재 HP : {item.hp}");
+            }
         }
 
         enum AttackType

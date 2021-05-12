@@ -15,6 +15,10 @@ namespace 머드게임
         public int score;
         int maxHp = 10;
 
+        int exp; // 10 -> 레벨 * 10 다음 레벨로 
+        int level = 1;
+
+
         public Player(string _userName, int power, int mapHp)
         {
             userName = _userName;
@@ -36,6 +40,22 @@ namespace 머드게임
             return $"{DisplayName} 공격력:{power}, 체력:{hp}";
         }
 
+        internal void GetExp(int getExp)
+        {
+            exp += getExp;
 
+            if(exp >= level * 10)
+            {
+                // 레벨업
+                level++;
+                exp = 0;
+                Print($"{userName}의 레벨이 {level}되었습니다");
+            }
+        }
+
+        private void Print(string log)
+        {
+            Console.WriteLine(log);
+        }
     }
 }

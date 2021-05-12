@@ -291,8 +291,15 @@ GameOver
                 Print($"{monster.name}이 죽었다");
                 monsters.Remove(monster);
 
-                // todo:몬스터 죽일시 아이템 경험치 획득, [랜덤]아이템 획득
+                //////// todo : 몬스터 죽일시 경험치 획득 
+                // 1. 몬스터에 획득 경험치 속성 추가.
+                // 2. 플레이어에 exp항목 추가.
+                // 3. exp 특정 한계 넘으면 레벨증가.
+                // 4. Level 추가.
+
+                // todo : [랜덤]아이템 획득
                 player.score += 1; // player.score++ 과 동일
+                player.GetExp(monster.getExp);
 
                 return monster;
             }
@@ -311,7 +318,7 @@ GameOver
 
         // [완료] 광격 공격을 추가 해봅시다. - 플레이어가 광역공격. -. 스킬
 
-        // Todo:일정 확률로 반격하는 적을 추가해봅시다.
+        // [완료] :일정 확률로 반격하는 적을 추가해봅시다.
 
         // Todo:AI동료를 추가해 봅시다.
 

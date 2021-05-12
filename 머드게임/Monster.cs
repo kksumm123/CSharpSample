@@ -33,6 +33,9 @@ namespace 머드게임
         public int power;
         public int hp;
 
+
+        public int getExp = 1;
+
         public Monster(int dungeonLevel)
         {
             id = ++idTotal;

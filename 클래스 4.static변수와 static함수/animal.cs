@@ -2,11 +2,23 @@
 
 namespace 클래스_4.static변수와_static함수
 {
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Monster.TotalCount++;
+        }
+    }
+    public class Monster
+    {
+        static public int TotalCount;
+    }
     public class Animal
     {
-        static int totalCount;
+        static int TotalCount;
+
         string name = "이름";
-        int power = 1;
+        int power   = 1;
 
         // 실행파일 실행시 항상 고정된 static Main함수 실행.
         // 인스턴스가 없는 상태에서 시작해야 하므로 static함수로 설정.
@@ -24,27 +36,28 @@ namespace 클래스_4.static변수와_static함수
             fox = new Animal();
             fox.name = "여우";
             fox.power = 3;
-            Animal.totalCount++;
+
+            Animal.TotalCount++;
 
             Animal lion;
             lion = new Animal();
             lion.name = "사자";
             lion.power = 5;
-            totalCount++;
+            TotalCount++;
             // Animal 클래스 내에서 사용하므로 "Animal."생략 가능.
             // static변수는 해당 클래스 내에서 언제나 사용가능
 
 
-            Console.WriteLine($"전체 동물은 {totalCount}마리 있다");
+            Console.WriteLine($"전체 동물은 {TotalCount}마리 있다");
             Console.WriteLine($"{fox.name}의 power는{fox.power}입니다");
             Console.WriteLine($"{lion.name}의 power는{lion.power}입니다");
 
-            Console.WriteLine($"전체 동물은 {TotalCount()}마리 있다(static 함수로 호출)");
+            Console.WriteLine($"전체 동물은 {GetTotalCount()}마리 있다(static 함수로 호출)");
         }
 
-        static int TotalCount()
+        static public int GetTotalCount()
         {
-            return totalCount;
+            return TotalCount;
         }
     }
 }

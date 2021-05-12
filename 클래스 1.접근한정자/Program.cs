@@ -21,7 +21,7 @@ namespace 클래스_3.접근한정자
             Console.WriteLine(공개된재산);
         }
     }
-    public class Me : Father
+    public class Son : Father
     {
         void PrintMyMoney()
         {
@@ -29,16 +29,36 @@ namespace 클래스_3.접근한정자
             Console.WriteLine(은닉재산);
             Console.WriteLine(공개된재산);
         }
+
+        internal void 은닉재산입금(int amount)
+        {
+            은닉재산 += amount;
+        }
+
+        internal void 다른사람재산보기(Son otherSon)
+        {
+            Console.WriteLine(otherSon.은닉재산);
+        }
+
+        internal void 다른사람재산보기(Father otherFather)
+        {
+            //Console.WriteLine(otherFather.은닉재산); // error
+            Console.WriteLine(otherFather.공개된재산);
+        }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Me me = new Me();
+            Son mySon = new Son();
+            Son yourSon = new Son();
 
-            //Console.WriteLine(me.아빠만사용하는비상금);
-            //Console.WriteLine(me.은닉재산);
-            Console.WriteLine(me.공개된재산);
+            mySon.은닉재산입금(100);
+            yourSon.다른사람재산보기(mySon);
+
+            //Console.WriteLine(me.아빠만사용하는비상금); // error
+            //Console.WriteLine(me.은닉재산); // error
+            Console.WriteLine(mySon.공개된재산);
         }
     }
 }

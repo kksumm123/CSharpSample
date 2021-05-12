@@ -2,6 +2,26 @@
 
 namespace 머드게임
 {
+    public class CounterAttackTroll : Monster
+    {
+        public CounterAttackTroll(int dungeonLevel):base(dungeonLevel)
+        {
+        }
+
+        public override void OnHit(int damage, Player player)
+        {
+            base.OnHit(damage, player);
+
+            // 몬스터가 맞을때 반격 해야한다. -> 특정 확률로 반격한다.
+            Random random = new Random();
+            if (random.NextDouble() // 0 ~ 1
+                > 0.3) // 30% 확률로 반격 하자., 0 ~ 0.3 
+            {
+                player.hp -= power;
+                Console.WriteLine($"{name}이 반격했다. 플레이어 체력:{player.hp}");
+            }
+        }
+    }
 
     public class Monster
     {
@@ -12,6 +32,7 @@ namespace 머드게임
         public string name;
         public int power;
         public int hp;
+
         public Monster(int dungeonLevel)
         {
             id = ++idTotal;
@@ -32,7 +53,7 @@ namespace 머드게임
             return $"{name} 공격력:{power}, 체력:{hp}";
         }
 
-        internal void OnHit(int damage)
+        virtual public void OnHit(int damage, Player player)
         {
             hp -= damage;
 

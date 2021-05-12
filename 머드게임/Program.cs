@@ -57,15 +57,16 @@ namespace 머드게임
 
             do
             {
-                // 몬스터 스폰, 리젠
+                
                 int monsterCount = random.Next(1, 3); // 1 ~ 2개(최소값은 포함해도 최대값은 포함하지 않음) 
-                List<Monster> monsters = new List<Monster>();
-                for (int i = 0; i < monsterCount; i++)
-                {
-                    monsters.Add(new Monster(dungeonLevel));
-                }
+                List<Monster> monsters = new List<Monster>(); // 몬스터 스폰, 리젠
+                //for (int i = 0; i < monsterCount; i++)
+                //{
+                //    monsters.Add(new Monster(dungeonLevel));
+                //}
 
-                monsters.Add(new DoubleBladeSlime(dungeonLevel));
+                //monsters.Add(new DoubleBladeSlime(dungeonLevel));
+                monsters.Add(new CounterAttackTroll(dungeonLevel));
 
                 Print($"몬스터 {monsters.Count}마리를 만났습니다.");
 
@@ -180,8 +181,8 @@ GameOver
         private static void PlayerTurn(Player player, List<Monster> monsters)
         {
             Print("");
-            Print("1:공격, 2:회복, 3:도망");
-            char userInput = GetAllowedAnswer("1", "2", "3")[0];
+            Print("1:공격, 2:광역공격, 3:회복, 3:도망");
+            char userInput = GetAllowedAnswer("1", "2", "3", "4")[0];
             switch (userInput)
             {
                 case '1':// 공격
@@ -252,7 +253,7 @@ GameOver
                 selected = int.Parse(userInput) - 1; // 인덱스는 0부터 시작하므로 -1해주자
 
                 var selectedMonster = monsters[selected];
-                selectedMonster.OnHit(player.power);
+                selectedMonster.OnHit(player.power, player);
 
                 // 몬스터가 죽었는가?
                 OnMonsterDie(player, monsters, selectedMonster);
@@ -261,16 +262,29 @@ GameOver
             static void 광역공격(Player player, List<Monster> monsters)
             {
                 // 모든 몬스터를 때린다.
-                foreach (var monster in monsters)
+                var mostersTemp = monsters.ToArray();
+                foreach (var monster in mostersTemp)
                 {
-                    monster.OnHit(player.power);
+                    monster.OnHit(player.power, player);
 
                     OnMonsterDie(player, monsters, monster);
                 }
+
+                // 모든 몬스터를 때린다.
+                //List<Monster> deleteMonsters = new List<Monster>();
+                //foreach (var monster in monsters)
+                //{
+                //    monster.OnHit(player.power, player);
+
+                //    Monster dieMonster = OnMonsterDie(player, monsters, monster);
+                //    if (dieMonster != null)
+                //        deleteMonsters.Add(dieMonster);
+                //}
+                //deleteMonsters.ForEach(x => monsters.Remove(x));
             }
         }
 
-        private static void OnMonsterDie(Player player, List<Monster> monsters, Monster monster)
+        private static Monster OnMonsterDie(Player player, List<Monster> monsters, Monster monster)
         {
             if (monster.hp <= 0)
             {
@@ -279,7 +293,11 @@ GameOver
 
                 // todo:몬스터 죽일시 아이템 경험치 획득, [랜덤]아이템 획득
                 player.score += 1; // player.score++ 과 동일
+
+                return monster;
             }
+
+            return null;
         }
 
         private static bool TryRun()

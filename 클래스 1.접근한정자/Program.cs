@@ -20,8 +20,15 @@ namespace 클래스_3.접근한정자
             Console.WriteLine(은닉재산);
             Console.WriteLine(공개된재산);
         }
+
+        internal void 부모의다른사람재산보기(Father otherFather)
+        {
+            Console.WriteLine(otherFather.아빠만사용하는비상금); // private
+            Console.WriteLine(otherFather.은닉재산);            // protected
+        }
     }
-    public class Me : Father
+
+    public class Son : Father
     {
         void PrintMyMoney()
         {
@@ -29,16 +36,54 @@ namespace 클래스_3.접근한정자
             Console.WriteLine(은닉재산);
             Console.WriteLine(공개된재산);
         }
+
+        internal void 은닉재산입금(int amount)
+        {
+            은닉재산 += amount;
+        }
+
+        internal void 다른사람재산보기(Son otherSon)
+        {
+            Console.WriteLine(otherSon.은닉재산);
+            Console.WriteLine(otherSon.공개된재산);
+        }
+
+        internal void 다른사람재산보기(Father otherFather)
+        {           
+            //Console.WriteLine(otherFather.은닉재산); // error
+
+            // 자식으로 형 변환 한다음에만 볼 수 있음.
+            Son os = (Son)otherFather;
+            Console.WriteLine(os.은닉재산);
+        }
     }
+
+    public class Daughter : Father
+    {
+        internal void 다른사람재산보기(Father otherFather)
+        {
+            //Console.WriteLine(otherFather.은닉재산); // error
+
+            // 자식으로 형 변환 한다음에만 볼 수 있음. -> 다른 자식 클래스로 형 변환하면 볼 수 없음.
+            Son os = (Son)otherFather; // 여기는 Daughter클래스이므로 Son클래스로 변환하면 Father 클래스의 protected멤버는 접근할 수 없음.
+            //Console.WriteLine(os.은닉재산); // error
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            Me me = new Me();
+            Son mySon = new Son();
+            Son yourSon = new Son();
 
-            //Console.WriteLine(me.아빠만사용하는비상금);
-            //Console.WriteLine(me.은닉재산);
-            Console.WriteLine(me.공개된재산);
+            mySon.은닉재산입금(100);
+            yourSon.다른사람재산보기(mySon);
+            yourSon.다른사람재산보기((Father)mySon);
+
+            //Console.WriteLine(me.아빠만사용하는비상금); // error
+            //Console.WriteLine(me.은닉재산); // error
+            Console.WriteLine(mySon.공개된재산);
         }
     }
 }

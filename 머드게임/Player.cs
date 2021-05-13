@@ -2,18 +2,24 @@
 
 namespace 머드게임
 {
-    internal class Player
+    public class Player
     {
-        public string userName;
+        public string DisplayName
+        {
+            get { return $"용사({userName})"; }
+        }
+
+        string userName;
         public int power;
         public int hp;
-        int maxHp;
+        public int score;
+        int maxHp = 10;
 
-        public Player(string userName, int power, int hp)
+        public Player(string _userName, int power, int mapHp)
         {
-            this.userName = userName;
+            userName = _userName;
             this.power = power;
-            this.maxHp = hp;
+            maxHp = mapHp;
             this.hp = maxHp;
         }
 

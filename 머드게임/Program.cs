@@ -109,7 +109,9 @@ namespace 머드게임
                     Print(player);
 
                     //유저 행동.
-                    PlayerTurn(player, monsters);
+                    bool playerRun = PlayerTurn(player, monsters);
+                    if (playerRun)
+                        break;
 
                     // 몬스터가 플레이어를 공격.
                     MonsterTurn(player, monsters);
@@ -183,10 +185,16 @@ GameOver
             Normal,
             광역공격,
         }
-        private static void PlayerTurn(Player player, List<Monster> monsters)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="monsters"></param>
+        /// <returns>플레이어 도망칠때 리턴 true</returns>
+        private static bool PlayerTurn(Player player, List<Monster> monsters)
         {
             Print("");
-            Print("1:공격, 2:광역공격, 3:회복, 3:도망");
+            Print("1:공격, 2:광역공격, 3:회복, 4:도망");
             char userInput = GetAllowedAnswer("1", "2", "3", "4")[0];
             switch (userInput)
             {
@@ -201,11 +209,22 @@ GameOver
                     break;
                 case '4': // 도망.
                     bool successRun = TryRun();
-                    break;
+
+                    string log;
+                    if (successRun)
+                        log = "성공적으로 도망 쳤습니다";
+                    else
+                        log = "도망치지 못했습니다";
+                    Console.WriteLine(log);
+
+                    //Console.WriteLine(successRun ? "성공적으로 도망 쳤습니다" : "도망치지 못했습니다"); // 삼항 연산자 쓰면 한주롤 해결
+                    return successRun;
                 default:
                     Print("없는 명령어 입니다" + userInput);
                     break;
             }
+
+            return false;
         }
 
         private static void Print(Object log)

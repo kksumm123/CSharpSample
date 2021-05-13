@@ -48,7 +48,7 @@ namespace 머드게임
         virtual public void OnAttack(Player targetPlayer)
         {
             targetPlayer.hp -= power;
-            Console.WriteLine($"{name}의 공격으로 {targetPlayer.DisplayName}의 체력은 {targetPlayer.hp}가 되었다");
+            Console.WriteLine($"{name}의 공격으로 {targetPlayer.DisplayName}의 체력은 {targetPlayer.hp} 되었다");
         }
 
         public override string ToString()
